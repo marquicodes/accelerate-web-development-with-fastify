@@ -35,8 +35,7 @@ module.exports = fp(async function authenticationPlugin (fastify, opts) {
     return token
   })
 
-  // todo: remove async https://github.com/fastify/fastify-jwt/pull/278
-  async function skipRevokedTokens (request, decodedToken) { // [6]
+  function skipRevokedTokens (request, decodedToken) { // [6]
     return !revokedTokens.has(decodedToken.jti)
   }
 }, {
