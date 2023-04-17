@@ -9,6 +9,7 @@ module.exports = fileTodoRoutes
 async function fileTodoRoutes (fastify, _opts) {
   await fastify.register(fastifyMultipart, {
     attachFieldsToBody: 'keyValues',
+    sharedSchemaId: 'schema:todo:import:file',
     async onFile (part) {
       const lines = []
 
@@ -28,7 +29,6 @@ async function fileTodoRoutes (fastify, _opts) {
 
       part.value = lines
     },
-    sharedSchemaId: 'schema:todo:import:file',
     limits: {
       fieldNameSize: 50,
       fieldSize: 100,
